@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:24:34 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/20 17:58:19 by lpeeters         ###   ########.fr       */
+/*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
+/*   Updated: 2024/03/20 17:57:31 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-//parse map, handle errors, convert into interactive 2d video game
-int	main(void)
+//minilibx library functions
+# include "mlx/mlx.h"
+
+//mlx data structure
+typedef struct s_mlx
 {
-	t_mlx	mlx;
+	void	*ptr;
+	void	*win;
+}			t_mlx;
 
-	mlx.ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "Testing");
-	mlx_loop(mlx.ptr);
-}
+#endif

@@ -6,7 +6,7 @@
 #    By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 02:14:32 by lpeeters          #+#    #+#              #
-#    Updated: 2024/03/15 21:32:45 by lpeeters         ###   ########.fr        #
+#    Updated: 2024/03/20 20:36:11 by lpeeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,8 @@ library_files = ${shell find . -name "*.a"}
 #fetch library directories
 library_file_directories = ${sort ${dir ${library_files}}}
 
-#fetch library filenams
-library_file_path_names = ${notdir ${library_files}} #cut off the path
-library_names = ${library_file_path_names:lib%.a=%} #cut off the library files' "lib" prefix
-library_file_names = ${library_names:.a=} #cut off the library files' ".a" suffix
+#fetch library filenames
+library_file_names = ${patsubst lib%.a,%,${notdir ${library_files}}}
 
 #compilation flags, their directories and names for any library
 library_files_compilation_flags = ${foreach library_directory,${library_file_directories},-L ${library_directory}} \
@@ -75,9 +73,12 @@ clear = \033[K
 # Build dependency
 program: compile_makefiles ${program_name}
 
-#TODO: fix dependencies
 compile_makefiles:
-	@${makefiles_compilation}
+	@if [ -z "${library_files}" ]; then \
+		${makefiles_compilation} \
+	else \
+		echo "make: no libraries to be compiled..."; \
+	fi
 
 # Build executable
 ${program_name}: ${source_files} ${header_files}
@@ -118,19 +119,18 @@ ${object_directory}%.o: %.c ${header_files}
 	fi
 
 # If they exist, remove unecessary files for the final product
-#TODO: fix if conditional checking if no projects were cleaned
 clean:
-	@$(cleaned = 0)
-	@$(foreach dir,$(makefile_directories),\
-		if [ -n "$$(find $(dir) -maxdepth 1 -name '*.a' -print -quit)" ]; then \
-			echo "$(red)removing library files in $(dir)...$(white)"; \
-			make -sC $(dir) fclean; \
-			$(cleaned = $$(shell expr $(cleaned) + 1)) \
-		fi;)
-	@if [ "$(cleaned)" = "0" ]; then \
+	@cleaned=0; \
+	for dir in $(makefile_directories); do \
+		if [ -n "$$(find $$dir -maxdepth 1 -name '*.a' -print -quit)" ]; then \
+			echo "$(red)removing library files in $${dir#./}...$(white)"; \
+			make -sC $$dir fclean; \
+			cleaned=$$((cleaned + 1)); \
+		fi; \
+	done; \
+	if [ "$$cleaned" -eq 0 ]; then \
 		echo "make: No library files to be cleaned."; \
 	fi
-	@# does not work yet ^
 	@if [ -d "${object_directory}" ]; then \
 		echo "${red}removing object files...${white}"; \
 		${force_remove} ${object_directory}; \
