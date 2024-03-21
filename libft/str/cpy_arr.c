@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cpy_arr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/21 21:49:44 by lpeeters         ###   ########.fr       */
+/*   Created: 2023/07/25 22:56:52 by lpeeters          #+#    #+#             */
+/*   Updated: 2023/10/27 19:32:52 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../libft.h"
 
-# include "libft/libft.h" //Custom library functions
-# include "mlx/mlx.h" //Minilibx library functions
-# include "stdio.h" //printf
-
-//mlx data structure
-typedef struct s_mlx
+//copy a 2d array
+char	**cpy_arr(char **arr)
 {
-	void	*ptr;
-	void	*win;
-}			t_mlx;
+	int		i;
+	char	**cpy;
 
-#endif
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (arr[i] != NULL)
+		i++;
+	cpy = (char **)malloc(sizeof(char *) * (i + 1));
+	if (cpy == NULL)
+		return (NULL);
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		cpy[i] = ft_strdup(arr[i]);
+		if (cpy[i++] == NULL)
+		{
+			free_arr(cpy);
+			return (NULL);
+		}
+	}
+	cpy[i] = NULL;
+	return (cpy);
+}

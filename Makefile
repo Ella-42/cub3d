@@ -6,7 +6,7 @@
 #    By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 02:14:32 by lpeeters          #+#    #+#              #
-#    Updated: 2024/03/20 20:36:11 by lpeeters         ###   ########.fr        #
+#    Updated: 2024/03/21 21:44:30 by lpeeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,33 +18,33 @@ minilibx_flags = -L /usr/lib -l Xext -l X11 -l m -l z
 
 compilation_flags = -g -Wall -Werror -Wextra
 
-#find other makefiles
-makefiles = ${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*"}
+# Find other makefiles
+makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*"},${found_file:./%=%}}
 
-#fetch makefile directory
+# Fetch makefile directories
 makefile_directories = ${sort ${dir ${makefiles}}}
 
-#make other projects that were found
+# Make other projects that were found
 makefiles_compilation = ${foreach makefile_directory,${makefile_directories}, make -sC ${makefile_directory} ;}
 
-source_files = ${shell find ./ -name "*.c" -not -path "*lib*" -a -not -path "*mlx*"}
+source_files = ${foreach found_file,${shell find ./ -name "*.c" -not -path "*lib*" -a -not -path "*mlx*"},${found_file:./%=%}}
 
-header_files = ${shell find ./ -name "*.h" -not -path "*lib*" -a -not -path "*mlx*"}
+header_files = ${foreach found_file,${shell find ./ -name "*.h" -not -path "*lib*" -a -not -path "*mlx*"},${found_file:./%=%}}
 
 header_directories = ${sort ${foreach header_path,${header_files},${dir ${header_path}}}}
 
 header_includes = ${foreach header_directory,${header_directories},-I ${header_directory}}
 
-#find library files
-library_files = ${shell find . -name "*.a"}
+# Find library files
+library_files = ${foreach found_file,${shell find . -name "*.a"},${found_file:./%=%}}
 
-#fetch library directories
+# Fetch library directories
 library_file_directories = ${sort ${dir ${library_files}}}
 
-#fetch library filenames
+# Fetch library filenames
 library_file_names = ${patsubst lib%.a,%,${notdir ${library_files}}}
 
-#compilation flags, their directories and names for any library
+# Compilation flags, their directories and names for any library
 library_files_compilation_flags = ${foreach library_directory,${library_file_directories},-L ${library_directory}} \
 	  ${foreach library_file_name,${library_file_names},-l ${library_file_name}}
 
@@ -55,8 +55,6 @@ make_object_directory = mkdir -p ${@D}
 object_files = ${source_files:%.c=${object_directory}%.o}
 
 force_remove = rm -rf
-
-silence_output = > /dev/null
 
 # Color codes for printing colorful text
 white = \033[0;39m
@@ -70,10 +68,11 @@ up = \033[A
 # Erase the current line on the cursor
 clear = \033[K
 
-# Build dependency
+# Build dependencies
 program: compile_makefiles ${program_name}
 
-compile_makefiles:
+# Compile other libraries if necessary
+compile_makefiles: ${source_files} ${header_files}
 	@if [ -z "${library_files}" ]; then \
 		${makefiles_compilation} \
 	else \
@@ -105,7 +104,7 @@ ${program_name}: ${source_files} ${header_files}
 obj: ${object_files}
 
 # Compile object files
-${object_directory}%.o: %.c ${header_files}
+${object_directory}%.o: ${source_files} ${header_files}
 	@${make_object_directory}
 	@echo "${yellow}compiling $< into an object file...${white}"
 	@if [ $$? -eq 0 ]; then \
@@ -123,7 +122,7 @@ clean:
 	@cleaned=0; \
 	for dir in $(makefile_directories); do \
 		if [ -n "$$(find $$dir -maxdepth 1 -name '*.a' -print -quit)" ]; then \
-			echo "$(red)removing library files in $${dir#./}...$(white)"; \
+			echo "$(red)removing library files in $${dir}...$(white)"; \
 			make -sC $$dir fclean; \
 			cleaned=$$((cleaned + 1)); \
 		fi; \

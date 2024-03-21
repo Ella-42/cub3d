@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/21 21:49:44 by lpeeters         ###   ########.fr       */
+/*   Created: 2023/05/12 17:06:17 by lpeeters          #+#    #+#             */
+/*   Updated: 2023/10/25 11:48:21 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../libft.h"
 
-# include "libft/libft.h" //Custom library functions
-# include "mlx/mlx.h" //Minilibx library functions
-# include "stdio.h" //printf
-
-//mlx data structure
-typedef struct s_mlx
+//free the memory of a 2d array
+void	free_arr(char **arr)
 {
-	void	*ptr;
-	void	*win;
-}			t_mlx;
+	int	i;
 
-#endif
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+	arr = NULL;
+}

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wmarien <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/21 21:49:44 by lpeeters         ###   ########.fr       */
+/*   Created: 2023/01/10 15:51:46 by wmarien           #+#    #+#             */
+/*   Updated: 2023/10/06 22:46:28 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../libft.h"
 
-# include "libft/libft.h" //Custom library functions
-# include "mlx/mlx.h" //Minilibx library functions
-# include "stdio.h" //printf
-
-//mlx data structure
-typedef struct s_mlx
+//allocate memory and initialize values to 0
+void	*ft_calloc(size_t nmeb, size_t size)
 {
 	void	*ptr;
-	void	*win;
-}			t_mlx;
 
-#endif
+	ptr = malloc(nmeb * size);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, nmeb * size);
+	return (ptr);
+}
