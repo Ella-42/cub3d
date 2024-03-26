@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/26 19:13:29 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/26 23:35:52 by qraymaek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /* LIBRARIES */
 
-# include "libft/libft.h" //Custom library functions
-# include "mlx/mlx.h" //Minilibx library functions
+# include "../libft/libft.h" //Custom library functions
+# include "../mlx/mlx.h" //Minilibx library functions
 # include "stdio.h" //printf
 
 /* MACROS */

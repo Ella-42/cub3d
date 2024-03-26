@@ -68,10 +68,10 @@ void	ft_bzero(void *s, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 //create a singly linked list entry at the end
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *newl);
 
 //create a singly linked list entry at the front
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *newl);
 
 //perform a delete function on each entry in a singly linked list
 void	ft_lstclear(t_list **lst, void (*del)(void*));

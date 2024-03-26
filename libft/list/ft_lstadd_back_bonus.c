@@ -13,15 +13,15 @@
 #include "../libft.h"
 
 //create a singly linked list entry at the end
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *newl)
 {
 	t_list	*t;
 
 	if (*lst)
 	{
 		t = ft_lstlast(*lst);
-		t->next = &*new;
+		t->next = &*newl;
 	}
 	else
-		*lst = new;
+		*lst = newl;
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 13:58:55 by lpeeters          #+#    #+#              #
-#    Updated: 2024/03/26 16:56:57 by lpeeters         ###   ########.fr        #
+#    Updated: 2024/03/26 23:40:48 by qraymaek         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = libft.a
 
 #make into library file
 LIBC = ar rcs
+
+LIB_DIR = ../
 
 #compiler
 CC = cc
@@ -107,21 +109,19 @@ UP = \033[A
 CLEAR = \033[K
 
 #make object files
-${OBJ_DIR}%.o: %.c ${SRCS} ${HEADER}
-	@${MK_DIR}
-	@echo "[LIBFT] ${YELLOW}Compiling: $<${WHITE}"
-	@${CC} ${CFLAGS} -c $< -I ${HEADER} -o $@
-	@printf "${UP}${CLEAR}"
+OBJS = $(SRCS:%.c=%.o)
 
-#make project into library file
-${NAME}: ${OBJS}
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+${LIB_DIR}${NAME}: ${OBJS}
 	@echo "[LIBFT] ${GREEN}done compiling object files${WHITE}"
 	@${MK_DIR}
-	@${LIBC} ${NAME} ${OBJS} ${HEADER}
+	@${LIBC} ${LIB_DIR}${NAME} ${OBJS}
 	@echo "[LIBFT] ${GREEN}done compiling executable${WHITE}"
 
 #make
-all: ${NAME}
+all: ${LIB_DIR}${NAME}
 
 #clean object files and directories
 clean:
