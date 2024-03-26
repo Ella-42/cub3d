@@ -6,7 +6,7 @@
 /*   By: wmarien <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:06:10 by wmarien           #+#    #+#             */
-/*   Updated: 2023/11/24 23:10:09 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:14:48 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int		ft_atoi(const char *nptr);
 //calculate the absolute value of an integer
 int		ft_abs(int nb);
 
-//calculate the number of entrees in a singly linked list
+//calculate the number of entries in a singly linked list
 int		ft_lstsize(t_list *lst);
 
 /**************/

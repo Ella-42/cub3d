@@ -6,7 +6,7 @@
 #    By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 13:58:55 by lpeeters          #+#    #+#              #
-#    Updated: 2024/03/21 21:15:55 by lpeeters         ###   ########.fr        #
+#    Updated: 2024/03/26 16:56:57 by lpeeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,64 +26,63 @@ CFLAGS = -g -Wall -Wextra -Werror
 RM = rm -rf
 
 #source files
-SRCS =	\
-		mem/ft_calloc.c				\
-		mem/ft_memset.c				\
-		mem/ft_bzero.c				\
-		mem/ft_memcpy.c				\
-		mem/ft_memmove.c 			\
-		mem/ft_memchr.c				\
-		mem/ft_memcmp.c				\
-		mem/free_array.c			\
-		\
-		ascii/ft_isalpha.c 			\
-		ascii/ft_isdigit.c			\
-		ascii/ft_isalnum.c			\
-		ascii/ft_isascii.c			\
-		ascii/ft_isprint.c			\
-		ascii/ft_isspace.c			\
-		ascii/ft_toupper.c			\
-		ascii/ft_tolower.c			\
-		\
-		str/ft_strlen.c				\
-		str/ft_strchr.c				\
-		str/ft_strrchr.c			\
-		str/ft_strcmp.c				\
-		str/ft_strncmp.c			\
-		str/ft_strlcpy.c			\
-		str/ft_strlcat.c			\
-		str/ft_strnstr.c			\
-		str/ft_strdup.c				\
-		str/ft_substr.c				\
-		str/ft_strjoin.c			\
-		str/ft_strtrim.c			\
-		str/ft_split.c				\
-		str/ft_strmapi.c			\
-		str/ft_striteri.c			\
-		str/cpy_arr.c				\
-		str/mk_arr.c				\
-		str/strjoin.c				\
-		\
-		math/ft_atoi.c				\
-		math/ft_itoa.c				\
-		math/ft_abs.c				\
-		\
-		put/ft_putchar_fd.c			\
-		put/ft_putstr_fd.c			\
-		put/ft_putendl_fd.c			\
-		put/ft_putnbr_fd.c			\
-		\
-		lst/ft_lstnew_bonus.c		\
-		lst/ft_lstadd_front_bonus.c	\
-		lst/ft_lstsize_bonus.c		\
-		lst/ft_lstlast_bonus.c		\
-		lst/ft_lstadd_back_bonus.c	\
-		lst/ft_lstdelone_bonus.c	\
-		lst/ft_lstclear_bonus.c		\
-		lst/ft_lstiter_bonus.c		\
-		lst/ft_lstmap_bonus.c		\
-		\
-		gnl/get_next_line.c			\
+SRCS = ./check/ft_isprint.c				\
+	   ./check/ft_isspace.c				\
+	   ./check/ft_isdigit.c				\
+	   ./check/ft_isalnum.c				\
+	   ./check/ft_isascii.c				\
+	   ./check/ft_isalpha.c				\
+										\
+	   ./memory/ft_memcmp.c				\
+	   ./memory/ft_memset.c				\
+	   ./memory/ft_memmove.c			\
+	   ./memory/ft_calloc.c				\
+	   ./memory/ft_bzero.c				\
+	   ./memory/ft_memcpy.c				\
+	   ./memory/ft_memchr.c				\
+										\
+	   ./list/ft_lstdelone_bonus.c		\
+	   ./list/ft_lstnew_bonus.c			\
+	   ./list/ft_lstadd_back_bonus.c	\
+	   ./list/ft_lstsize_bonus.c		\
+	   ./list/ft_lstmap_bonus.c			\
+	   ./list/ft_lstlast_bonus.c		\
+	   ./list/ft_lstclear_bonus.c		\
+	   ./list/ft_lstadd_front_bonus.c	\
+	   ./list/ft_lstiter_bonus.c		\
+										\
+	   ./convert/ft_atoi.c				\
+	   ./convert/ft_tolower.c			\
+	   ./convert/ft_itoa.c				\
+	   ./convert/ft_abs.c				\
+	   ./convert/ft_toupper.c			\
+										\
+	   ./array/cpy_arr.c				\
+	   ./array/free_array.c				\
+	   ./array/mk_arr.c					\
+										\
+	   ./string/ft_putstr_fd.c			\
+	   ./string/ft_strlen.c				\
+	   ./string/ft_strdup.c				\
+	   ./string/ft_strjoin.c			\
+	   ./string/ft_strtrim.c			\
+	   ./string/ft_split.c				\
+	   ./string/ft_strrchr.c			\
+	   ./string/ft_strmapi.c			\
+	   ./string/ft_strlcat.c			\
+	   ./string/ft_strlcpy.c			\
+	   ./string/ft_strncmp.c			\
+	   ./string/ft_putchar_fd.c			\
+	   ./string/ft_putnbr_fd.c			\
+	   ./string/ft_strchr.c				\
+	   ./string/ft_strnstr.c			\
+	   ./string/ft_putendl_fd.c			\
+	   ./string/ft_strcmp.c				\
+	   ./string/ft_substr.c				\
+	   ./string/ft_striteri.c			\
+	   ./string/strjoin.c				\
+										\
+	   ./get_next_line/get_next_line.c	\
 
 #object directory
 OBJ_DIR = OBJS/
