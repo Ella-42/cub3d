@@ -6,7 +6,7 @@
 #    By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 02:14:32 by lpeeters          #+#    #+#              #
-#    Updated: 2024/03/21 21:44:30 by lpeeters         ###   ########.fr        #
+#    Updated: 2024/03/27 13:20:47 by lpeeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ ${program_name}: ${source_files} ${header_files}
 obj: ${object_files}
 
 # Compile object files
-${object_directory}%.o: ${source_files} ${header_files}
+${object_directory}%.o: %.c ${header_files}
 	@${make_object_directory}
 	@echo "${yellow}compiling $< into an object file...${white}"
 	@if [ $$? -eq 0 ]; then \
@@ -113,7 +113,7 @@ ${object_directory}%.o: ${source_files} ${header_files}
 	@${compiler} ${compilation_flags} -c $< ${header_includes} -o $@
 	@if [ $$? -ne 0 ]; then \
 		echo "${red}error compiling object files${white}"; \
-	elif [ "./${<:%.c=%.o}" = "${lastword ${source_files:%.c=%.o}}" ]; then \
+	elif [ "${<:%.c=%.o}" = "${lastword ${source_files:%.c=%.o}}" ]; then \
 		echo "${green}done compiling object files${white}"; \
 	fi
 

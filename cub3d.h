@@ -6,7 +6,7 @@
 /*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/26 19:13:29 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:44:48 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 # include "libft/libft.h" //Custom library functions
 # include "mlx/mlx.h" //Minilibx library functions
-# include "stdio.h" //printf
+# include "stdio.h" //printf, perror
+# include "string.h" //strerror
+# include "errno.h" //errno
 
 /* MACROS */
 
@@ -43,5 +45,24 @@ typedef struct s_mlx
 	void	*ptr;
 	void	*win;
 }			t_mlx;
+
+/* FUNCTIONS */
+
+/**************************/
+/*      exit/error.c      */
+/**************************/
+
+// Print error messages
+int	prnt_err(char *str);
+
+/*************************/
+/*   exit/mlx_events.c   */
+/*************************/
+
+// Exit in a clean way
+int	close_window(t_mlx *mlx, int status);
+
+// Defines what happens when certain keys are pressed
+int	key_event(int keycode, t_mlx *mlx);
 
 #endif
