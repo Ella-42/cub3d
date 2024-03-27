@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 13:58:55 by lpeeters          #+#    #+#              #
-#    Updated: 2024/03/26 16:56:57 by lpeeters         ###   ########.fr        #
+#    Updated: 2024/03/27 20:11:28 by qraymaek         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,7 +117,7 @@ ${OBJ_DIR}%.o: %.c ${SRCS} ${HEADER}
 ${NAME}: ${OBJS}
 	@echo "[LIBFT] ${GREEN}done compiling object files${WHITE}"
 	@${MK_DIR}
-	@${LIBC} ${NAME} ${OBJS} ${HEADER}
+	@${LIBC} ${NAME} ${OBJS}
 	@echo "[LIBFT] ${GREEN}done compiling executable${WHITE}"
 
 #make
