@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wmarien <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:01:41 by wmarien           #+#    #+#             */
-/*   Updated: 2023/10/06 22:05:38 by lpeeters         ###   ########.fr       */
+/*   Created: 2024/03/27 12:43:39 by lpeeters          #+#    #+#             */
+/*   Updated: 2024/03/27 12:43:47 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../cub3d.h"
 
-//check if given character is printable
-int	ft_isprint(int c)
+// Print error messages
+int	prnt_err(char *str)
 {
-	return (c >= 32 && c <= 126);
+	return (ft_putendl_fd(str, 2), 1);
 }

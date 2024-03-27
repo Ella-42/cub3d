@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qraymaek <qraymaek@student.s19.be>         +#+  +:+       +#+        */
+/*   By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/26 23:35:52 by qraymaek         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:33:24 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 /* LIBRARIES */
 
-# include "../libft/libft.h" //Custom library functions
-# include "../mlx/mlx.h" //Minilibx library functions
-# include "./data.h"
-# include "stdio.h" //printf
+# include "libft/libft.h" //Custom library functions
+# include "mlx_linux/mlx.h" //Minilibx library functions
+# include "stdio.h" //printf, perror
+# include "string.h" //strerror
+# include "errno.h" //errno
 
 /* MACROS */
 
@@ -44,5 +45,39 @@ typedef struct s_mlx
 	void	*ptr;
 	void	*win;
 }			t_mlx;
+
+// Raycast data structure
+typedef struct s_ray_data
+{
+}	t_ray_data;
+
+/* FUNCTIONS */
+
+/**************************/
+/*      exit/error.c      */
+/**************************/
+
+// Print error messages
+int	prnt_err(char *str);
+
+/*************************/
+/*   exit/mlx_events.c   */
+/*************************/
+
+// Exit in a clean way
+int	close_window(t_mlx *mlx, int status);
+
+// Defines what happens when certain keys are pressed
+int	key_event(int keycode, t_mlx *mlx);
+
+/**************************/
+/*  parser/map_checker.c  */
+/**************************/
+
+// Map file name validation
+int	map_checker(char *file_name);
+
+// Master map handler
+int	map_handler(char *file_name);
 
 #endif

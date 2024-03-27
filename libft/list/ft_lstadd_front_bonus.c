@@ -13,10 +13,10 @@
 #include "../libft.h"
 
 //create a singly linked list entry at the front
-void	ft_lstadd_front(t_list **lst, t_list *newl)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst || !newl)
+	if (!lst || !new)
 		return ;
-	newl->next = *lst;
-	*lst = newl;
+	new->next = *lst;
+	*lst = new;
 }
