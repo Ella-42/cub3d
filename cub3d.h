@@ -6,7 +6,7 @@
 /*   By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/27 14:52:40 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:38:00 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* LIBRARIES */
 
 # include "libft/libft.h" //Custom library functions
-# include "mlx/mlx.h" //Minilibx library functions
+# include "mlx_linux/mlx.h" //Minilibx library functions
 # include "stdio.h" //printf, perror
 # include "string.h" //strerror
 # include "errno.h" //errno
