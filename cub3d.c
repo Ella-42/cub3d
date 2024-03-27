@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:24:34 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/27 13:22:37 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:52:51 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 
-	(void)av;
 	if (ac != 2)
 		return (prnt_err(strerror(EINVAL)));
+	if (!map_handler(av[1]))
+		return (FAILURE);
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "Cub3D");
 	mlx_key_hook(mlx.win, key_event, &mlx);

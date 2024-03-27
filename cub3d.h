@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpeeters <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:24:59 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/27 12:44:48 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:52:40 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,15 @@ int	close_window(t_mlx *mlx, int status);
 
 // Defines what happens when certain keys are pressed
 int	key_event(int keycode, t_mlx *mlx);
+
+/**************************/
+/*  parser/map_checker.c  */
+/**************************/
+
+// Map file name validation
+int	map_checker(char *file_name);
+
+// Master map handler
+int	map_handler(char *file_name);
 
 #endif
