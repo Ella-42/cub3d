@@ -6,7 +6,7 @@
 /*   By: lpeeters <lpeeters@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:41:12 by lpeeters          #+#    #+#             */
-/*   Updated: 2024/03/27 15:04:00 by lpeeters         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:30:51 by lpeeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	map_extension_checker(char *file_name)
 {
 	char	*file_type;
 
-	file_type = ft_strchr(file_name, '.');
+	file_type = ft_strrchr(file_name, '.');
 	if (!file_type || ft_strcmp(file_type, ".cub"))
 		return (0);
 	return (1);
