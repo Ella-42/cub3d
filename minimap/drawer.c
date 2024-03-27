@@ -18,6 +18,7 @@ void    player_drawer(t_minimap *map, t_player_data *player, int color)
 {
     int posX;
     int posY;
+    char    *dst;
 
     posX = player->posX - 2;
     posY = player->posY - 2;
@@ -26,7 +27,8 @@ void    player_drawer(t_minimap *map, t_player_data *player, int color)
         posY = player->posY - 2;
         while (posY <= player->posY + 2)
         {
-            my_mlx_pixel_put(map, posX, posY, color);
+            dst = map->addr + (posY * map->line_length + posX * (map->bits_per_pixel / 8));
+            *(unsigned int*)dst = color;
             posY++;
         }
         posX++;

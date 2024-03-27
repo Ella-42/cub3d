@@ -24,8 +24,8 @@ int	main(int ac, char **av)
 		return (prnt_err(strerror(EINVAL)));
 	if (!map_handler(av[1]))
 		return (FAILURE);
-    player.posX = 10;
-    player.posY = 10;
+    player.posX = 0;
+    player.posY = 0;
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "Cub3D");
     minimap.img = mlx_new_image(mlx.ptr, 710, 400);
