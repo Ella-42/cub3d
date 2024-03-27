@@ -17,6 +17,7 @@
 
 # include "../libft/libft.h" //Custom library functions
 # include "../mlx/mlx.h" //Minilibx library functions
+# include "./data.h"
 # include "stdio.h" //printf
 
 /* MACROS */
