@@ -37,12 +37,22 @@ int	close_window(t_mlx *mlx, int status)
 		print_map(mlx->map);
 */
 
+// Handles Movement
+int move(t_minimap *map, int direction)
+{
+    if (direction == UP)
+        map->player->posY += 0.5;
+    return (SUCCESS);
+}
+
 // Defines what happens when certain keys are pressed
 int	key_event(int keycode, t_mlx *mlx)
 {
-	if (keycode == ESCAPE)
-		close_window(mlx, SUCCESS);
-	else
+    if (keycode == ESCAPE)
+        close_window(mlx, SUCCESS);
+    else if (keycode == UP || keycode == W)
+        move(mlx->map, UP);
+    else
 		printf("Info: key not bound...\n");
 	return (0);
 }

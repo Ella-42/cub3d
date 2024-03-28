@@ -24,11 +24,12 @@ int	main(int ac, char **av)
 		return (prnt_err(strerror(EINVAL)));
 	if (!map_handler(av[1]))
 		return (FAILURE);
-    player.posX = 0;
-    player.posY = 0;
+    player.posX = 5;
+    player.posY = 5;
+    minimap.player = &player;
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "Cub3D");
-    minimap.img = mlx_new_image(mlx.ptr, 710, 400);
+    minimap.img = mlx_new_image(mlx.ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
     minimap.addr = mlx_get_data_addr(minimap.img, &minimap.bits_per_pixel, &minimap.line_length, &minimap.endian);
     player_drawer(&minimap, &player, 0x00FF0000);
     mlx_put_image_to_window(mlx.ptr, mlx.win, minimap.img, 0, 0);

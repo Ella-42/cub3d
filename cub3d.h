@@ -39,22 +39,8 @@
 # define RIGHT 65363
 # define D 100
 
-// MLX data structure
-typedef struct s_mlx
-{
-	void	*ptr;
-	void	*win;
-}			t_mlx;
-
-// MiniMap Data Structure
-typedef struct s_minimap
-{
-    void    *img;
-    char    *addr;
-    int bits_per_pixel;
-    int line_length;
-    int endian;
-}   t_minimap;
+# define MINIMAP_WIDTH 710
+# define MINIMAP_HEIGHT 400
 
 // Raycast data structure
 typedef struct s_ray_data
@@ -66,7 +52,29 @@ typedef struct s_player_data
 {
     float   posX;
     float   posY;
+    float   playerAngle;
+    float   moveSpeed;
+
 }   t_player_data;
+
+// MiniMap Data Structure
+typedef struct s_minimap
+{
+    void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+    t_player_data   *player;
+}   t_minimap;
+
+// MLX data structure
+typedef struct s_mlx
+{
+	void	*ptr;
+	void	*win;
+    t_minimap *map;
+}			t_mlx;
 
 /* FUNCTIONS */
 
