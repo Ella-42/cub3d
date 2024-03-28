@@ -18,8 +18,7 @@ minilibx_flags = -L /usr/lib -l Xext -l X11 -l m -l z
 
 compilation_flags = -g -Wall -Werror -Wextra
 
-# Find other makefiles
-#makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*macos*"},${found_file:./%=%}}
+makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*linux*"},${found_file:./%=%}}
 
 # Fetch makefile directories
 makefile_directories = ${sort ${dir ${makefiles}}}
@@ -27,20 +26,15 @@ makefile_directories = ${sort ${dir ${makefiles}}}
 # Make other projects that were found
 makefiles_compilation = ${foreach makefile_directory,${makefile_directories}, make -sC ${makefile_directory} ;}
 
-#source_files = ${foreach found_file,${shell find ./ -name "*.c" -not -path "*lib*" -a -not -path "*mlx*"},${found_file:./%=%}}
+source_files = ${foreach found_file,${shell find . -name "*.c" -not -path "*lib*" -a -not -path "*mlx*"},${found_file:./%=%}}
 
-source_files = ${shell find ./ -name "*.c" -not -path "*lib*" -a -not -path "*mlx*"}
-
-#header_files = ${foreach found_file,${shell find ./ -name "*.h" -not -path "*lib*" -a -not -path "*mlx*"},${found_file:./%=%}}
-
-header_files = ${shell find ./ -name "*.h" -not -path "*lib*" -a -not -path "*mlx*"}
+header_files = ${foreach found_file,${shell find . -name "*.h" -not -path "*lib*" -a -not -path "*mlx*"},${found_file:./%=%}}
 
 header_directories = ${sort ${foreach header_path,${header_files},${dir ${header_path}}}}
 
 header_includes = ${foreach header_directory,${header_directories},-I ${header_directory}}
 
 # Find library files
-#library_files = ${foreach found_file,${shell find . -name "*.a"},${found_file:./%=%}}
 library_files = ${shell find . -name "*.a"}
 
 # Fetch library directories
@@ -75,8 +69,7 @@ clear = \033[K
 
 ifeq ($(shell uname -s),Darwin)
 minilibx_flags = -L /opt/X11/lib -l Xext -l X11 -framework OpenGL -framework AppKit
-#makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*linux*"},${found_file:./%=%}}
-makefiles = ${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*linux*"}
+makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*linux*"},${found_file:./%=%}}
 endif
 
 # Build dependencies
