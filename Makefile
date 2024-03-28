@@ -18,7 +18,7 @@ minilibx_flags = -L /usr/lib -l Xext -l X11 -l m -l z
 
 compilation_flags = -g -Wall -Werror -Wextra
 
-makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*linux*"},${found_file:./%=%}}
+makefiles = ${foreach found_file,${shell find . -mindepth 2 \( -name "Makefile" -o -name "makefile" \) -not -path "*test*" -a -not -path "*macos*"},${found_file:./%=%}}
 
 # Fetch makefile directories
 makefile_directories = ${sort ${dir ${makefiles}}}
